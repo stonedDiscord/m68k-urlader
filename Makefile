@@ -40,8 +40,18 @@ LD=$(PREFIX)-ld
 OBJCOPY=$(PREFIX)-objcopy
 OBJDUMP=$(PREFIX)-objdump
 
-CFLAGS=-m$(CPU) -Wall -g -static -I../include -I. -msoft-float -MMD -MP -mpcrel -O
-LFLAGS=--script=pcrel_application.ld -L../libmetal -lmetal-$(CPU)
+# Auto-detect m68k_bare_metal path
+ifndef m68kbm_PATH
+ifneq ($(wildcard ../include/.*),)
+    m68kbm_PATH=..
+endif
+ifneq ($(wildcard ../m68k_bare_metal/include/.*),)
+    m68kbm_PATH=../m68k_bare_metal
+endif
+endif
+
+CFLAGS=-m$(CPU) -Wall -g -static -I${m68kbm_PATH}/include -I. -msoft-float -MMD -MP -mpcrel -O
+LFLAGS=--script=pcrel_application.ld -L${m68kbm_PATH}/libmetal -lmetal-$(CPU)
 
 OBJS=$(patsubst %.c,$(BUILDDIR)/%.c.o,$(SRCS))
 OBJS:=$(patsubst %.S,$(BUILDDIR)/%.S.o,$(OBJS))

@@ -11,7 +11,7 @@
  * backwards).
  */
 _bin_base = 0;
-_bin_sz = 32K;
+_bin_sz = 3K;
 
 STARTUP(crt0.o)
 OUTPUT_ARCH(m68k)
