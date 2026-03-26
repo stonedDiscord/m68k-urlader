@@ -1,0 +1,17 @@
+name: Build
+on:
+  [push, pull_request, workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/stoneddiscord/m68k_bare_metal:master
+    steps:
+    - uses: actions/checkout@v6
+    - name: Build
+      run: |
+        make rom
+    - name: Upload artifact
+      uses: actions/upload-artifact@v6
+      with:
+        path: bmbinary.rom
