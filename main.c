@@ -72,6 +72,9 @@
 
 void putchar_(char c);
 void led_and_send(char value);
+void init_duart(bool slow_mode);
+void main_task(void);
+void process_command(uint8_t value);
 
 void update_led(uint8_t value)
 {
@@ -88,14 +91,21 @@ void swap_bytes(uint8_t value)
     ;
 }
 
-void main_loop(void)
+void main_task(void)
 {
+    init_duart(false);
+
     led_and_send('P');
     led_and_send('i');
     led_and_send('m');
     led_and_send('m');
     led_and_send('e');
     led_and_send('l');
+
+    process_command(0);
+
+    SYNCR = 0x7f05;
+    SCCR0 = 9;
 }
 
 void process_command(uint8_t value)
@@ -192,7 +202,7 @@ int main(void)
     SCCR0 = 9;
     SCCR1 = 0x2c;
 
-    main_loop();
+    main_task();
 
     return 0;
 }
