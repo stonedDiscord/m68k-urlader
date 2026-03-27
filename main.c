@@ -20,7 +20,7 @@ int main(void)
     *SYNCR = 0x7f05u;
     *SCCR0 = 0x0009u;
     
-    printf("Pimmel!\n");
+    putchar_('E');
 
     return 0;
 }

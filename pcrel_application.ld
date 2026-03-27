@@ -10,8 +10,8 @@
  * forwards, and a reference at the end of the binary can only look 32K
  * backwards).
  */
-_bin_base = 0;
-_bin_sz = 3K;
+_bin_base = 0x400;
+_bin_sz = 8K;
 
 STARTUP(crt0.o)
 OUTPUT_ARCH(m68k)

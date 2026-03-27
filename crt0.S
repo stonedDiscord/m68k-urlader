@@ -7,24 +7,21 @@
 
         .section .text
         .align 2
-
+        .byte 0x7c
+        .ascii "load"
+        .byte 0xfd, 0xc4, 0x55
         .type _start, @function
         .globl _start
 _start:
-        /* Initialise (clear) the BSS area */
-        lea     %pc@(_bss_start), %a0   /* Starting address */
-        lea     %pc@(_bss_end), %a1     /* End address */
-
-0:      cmpa.l  %a1, %a0                /* Check if start < end */
-        bge     1f
-
-        clr.w   %a0@+                   /* Clear word and increment start */
-
-        bra     0b
+        nop
+        nop
+        nop
         
         /* Jump to main() */
-1:      lea     %pc@(main), %a0
-        jmp     %a0@
+1:      jmp     main
+
+        .ascii " L 0.01\0"
+        .ascii "  FREE SOFTWARE WITHOUT ANY WARRANTY 2026  \0"
 
         /* It is possible that main() may return in an application context, but
          * this needs to be appropriately managed by the calling code. */

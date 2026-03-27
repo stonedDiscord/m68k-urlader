@@ -50,7 +50,7 @@ ifneq ($(wildcard ../m68k_bare_metal/include/.*),)
 endif
 endif
 
-CFLAGS=-m$(CPU) -Wall -g -static -I${m68kbm_PATH}/include -I. -msoft-float -MMD -MP -mpcrel -O
+CFLAGS=-m$(CPU) -Wall -g -static -I${m68kbm_PATH}/include -I. -msoft-float -MMD -MP -O
 LFLAGS=--script=pcrel_application.ld -L${m68kbm_PATH}/libmetal -lmetal-$(CPU)
 
 OBJS=$(patsubst %.c,$(BUILDDIR)/%.c.o,$(SRCS))
