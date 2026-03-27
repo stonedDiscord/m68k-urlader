@@ -22,8 +22,6 @@ _start:
 
         .ascii " L 0.01\0"
         .ascii "  FREE SOFTWARE WITHOUT ANY WARRANTY 2026  \0"
-
-        /* It is possible that main() may return in an application context, but
-         * this needs to be appropriately managed by the calling code. */
+        .byte 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
 
         .end
