@@ -50,3 +50,16 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+.vscode/
+
+bmbinar*
+
+*.bin
+*.zip
+
+*.cfg
+nvram/
+snap/
+
+*.pdf
